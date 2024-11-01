@@ -1,4 +1,5 @@
 import 'package:alrikabf/Components/background.dart';
+import 'package:alrikabf/Pages/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,77 +21,82 @@ class _RegisterPageState extends State<RegisterPage> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  Future signUp() async {
-    if (passwordConfirmed()) {
+ Future signUp() async {
+  if (passwordConfirmed()) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 255, 133, 51), 
+          ),
+        );
+      },
+    );
 
-      // Show loading indicator
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Color.fromARGB(255, 255, 133, 51), 
-            ),
-          );
-        },
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
       );
 
-      try {
-        // Attempt to create the user
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim(),
-        );
+      await addUserDetails(
+        _firstNameController.text.trim(),
+        _lastNameController.text.trim(),
+        _emailController.text.trim(),
+      );
 
-        // If successful, add user details to Firestore
-        await addUserDetails(
-          _firstNameController.text.trim(),
-          _lastNameController.text.trim(),
-          _emailController.text.trim(),
-        );
-
-         // Close the loading indicator after successful sign-up
+      if (mounted) {
         Navigator.of(context).pop();
+      }
 
-      } on FirebaseAuthException catch (e) {
-
-         // Close the loading indicator in case of error
+    } on FirebaseAuthException catch (e) {
+      if (mounted) {
         Navigator.of(context).pop();
+      }
 
-        if (e.code == 'email-already-in-use') {
-          // Show error message if email is already registered
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: const Text('خطأ', textAlign: TextAlign.end, style: TextStyle(fontFamily: 'AvenirArabic'),),
-                content: const Text('هذا البريد الإلكتروني موجود بالفعل',
-                    textAlign: TextAlign.end, style: TextStyle(fontFamily: 'AvenirArabic'),),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('حسناً',style: TextStyle(
+      if (e.code == 'email-already-in-use') {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text(
+                'خطأ',
+                textAlign: TextAlign.end,
+                style: TextStyle(fontFamily: 'AvenirArabic'),
+              ),
+              content: const Text(
+                'هذا البريد الإلكتروني موجود بالفعل',
+                textAlign: TextAlign.end,
+                style: TextStyle(fontFamily: 'AvenirArabic'),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'حسناً',
+                      style: TextStyle(
                         fontFamily: 'AvenirArabic',
-                      color:  Color.fromARGB(255, 255, 133, 51),
-                    ),
-                    ),
+                        color: Color.fromARGB(255, 255, 133, 51),
+                      ),
                     ),
                   ),
-                ],
-              );
-            },
-          );
-        } else {
-          // Handle other errors if needed
-          print('Error: ${e.message}');
-        }
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        print('Error: ${e.message}');
       }
     }
   }
+}
+
 
   Future addUserDetails(String firstName, String lastName, String email) async {
     await FirebaseFirestore.instance.collection('users').add({
@@ -410,7 +416,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
                       // Skip Login outside the Card
                       RawMaterialButton(
-                        onPressed: () {},
+                        onPressed: (){
+                           Navigator.pushReplacement(
+                           context,
+                           MaterialPageRoute(builder: (context) => HomePage()),
+                            );
+                        },
                         elevation: 2.0,
                         fillColor: Colors.white,
                         padding: const EdgeInsets.all(20.0),
@@ -419,8 +430,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           'تخطي ',
                           style: TextStyle(
                             color: Colors.grey,
-                            fontWeight: FontWeight.bold,
                             fontFamily: 'AvenirArabic',
+                            fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
                         ),
