@@ -159,9 +159,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             children: [
                               // Hello Text
                               const Text(
-                                "يامرحبا",
+                                "أهلًا وسهلًا",
                                 style: TextStyle(
-                                  fontSize: 40,
+                                  fontSize: 38,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'AvenirArabic',
                                   color: Color.fromARGB(255, 255, 133, 51),
@@ -171,9 +171,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               const SizedBox(height: 8), 
 
                               const Text(
-                                "جعلها ترحب ملايين",
+                                "كن جزءًا من مستقبل جديد",
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   fontFamily: 'AvenirArabic',
                                   color: Colors.black87,
                                 ),

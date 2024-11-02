@@ -1,7 +1,7 @@
 import 'package:alrikabf/Components/background.dart';
 import 'package:alrikabf/Components/navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore import
+import 'package:cloud_firestore/cloud_firestore.dart'; 
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatefulWidget {

@@ -174,9 +174,9 @@ class _LoginPageState extends State<LoginPage> {
                             children: [
                               // Hello Text
                               const Text(
-                                "ياهلا",
+                                "أهلًا بك",
                                 style: TextStyle(
-                                  fontSize: 40,
+                                  fontSize: 38,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'AvenirArabic',
                                   color: Color.fromARGB(255, 255, 133, 51),
@@ -186,10 +186,10 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(height: 8), 
 
                               const Text(
-                                "يا مرحبا الف",
+                                "نحن هنا لخدمتك",
                                 style: TextStyle(
                                   fontFamily: 'AvenirArabic',
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   color: Colors.black87,
                                 ),
                               ),

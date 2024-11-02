@@ -105,7 +105,13 @@ class AboutUs extends StatelessWidget {
                   // Show a SnackBar confirmation
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('تم نسخ البريد الإلكتروني'),
+                      content: Text(
+                        'تم نسخ البريد الإلكتروني',
+                        style: TextStyle(
+                          fontFamily: 'AvenirArabic',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                       duration: Duration(seconds: 2),
                     ),
                   );
@@ -123,12 +129,15 @@ class AboutUs extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 5,),
+              const SizedBox(
+                width: 5,
+              ),
               const Text(
                 ':تواصل معنا',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
+                  fontFamily: 'AvenirArabic',
                 ),
               )
             ],
@@ -141,7 +150,7 @@ class AboutUs extends StatelessWidget {
   Widget _buildCard({
     required String title,
     required String content,
-     IconData? iconData,
+    IconData? iconData,
   }) {
     return Card(
       shape: RoundedRectangleBorder(
