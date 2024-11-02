@@ -58,6 +58,7 @@ flutter:
     - lib/assets/images/alrikab_logo2.png
     - lib/assets/images/alrikab_logo3.png
     - lib/assets/images/alrikab_logoWhite.png
+    - lib/assets/images/alrikab_logoBar.png
     - lib/assets/images/gmail_icon.jpg
     - lib/assets/images/x_icon.jpg
   # An image asset can refer to one or more resolution-specific "variants", see

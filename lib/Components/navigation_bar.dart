@@ -7,52 +7,64 @@ class CustomNavigationBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false, 
       iconTheme: const IconThemeData(color: Colors.white),
       backgroundColor: const Color.fromARGB(255, 255, 133, 51),
+      title: Row(
+        children: [
+          Image.asset(
+            'lib/assets/images/alrikab_logoBar.png', 
+            height: 45,
+            color: Colors.white,
+          ),
+          
+        ],
+      ),
       actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/about_us');
-          },
-          child: const Text(
-            'من نحن',
-            style: TextStyle(
-              fontFamily: 'AvenirArabic',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+
+         _buildNavButton(
+          context,
+          label: 'من نحن',
+          routeName: '/about_us',
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/contact_us');
-          },
-          child: const Text(
-            'تواصل معنا',
-            style: TextStyle(
-              fontFamily: 'AvenirArabic',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+        
+         VerticalDivider(color: Colors.white.withOpacity(0.5), thickness: 1),
+
+        _buildNavButton(
+          context,
+          label: 'تواصل معنا',
+          routeName: '/contact_us',
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/home');
-          },
-          child: const Text(
-            'الصفحة الرئيسية',
-            style: TextStyle(
-              fontFamily: 'AvenirArabic',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+         VerticalDivider(color: Colors.white.withOpacity(0.5), thickness: 1),
+
+
+        _buildNavButton(
+          context,
+          label: 'الصفحة الرئيسية',
+          routeName: '/home',
         ),
+       
       ],
+    );
+  }
+
+  Widget _buildNavButton(BuildContext context, {required String label, required String routeName}) {
+    return Padding(
+       padding: const EdgeInsets.symmetric(horizontal:  3),
+      child: TextButton(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, routeName);
+        },
+        child: Text(
+          label,
+          style: const TextStyle(
+            fontFamily: 'AvenirArabic',
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
   }
 
