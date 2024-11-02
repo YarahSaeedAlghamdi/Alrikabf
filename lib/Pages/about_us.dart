@@ -129,9 +129,11 @@ class AboutUs extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 5,
-              ),
+
+
+              const SizedBox(width: 5),
+
+              
               const Text(
                 ':تواصل معنا',
                 style: TextStyle(

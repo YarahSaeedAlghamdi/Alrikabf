@@ -168,7 +168,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               ),
 
+
                               const SizedBox(height: 8), 
+                              
 
                               const Text(
                                 "كن جزءًا من مستقبل جديد",
