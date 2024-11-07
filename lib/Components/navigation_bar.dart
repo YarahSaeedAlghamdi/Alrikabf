@@ -10,16 +10,7 @@ class CustomNavigationBar extends StatelessWidget
       automaticallyImplyLeading: false, 
       iconTheme: const IconThemeData(color: Colors.white),
       backgroundColor: const Color.fromARGB(255, 255, 133, 51),
-      title: Row(
-        children: [
-          Image.asset(
-            'lib/assets/images/alrikab_logoBar.png', 
-            height: 45,
-            color: Colors.white,
-          ),
-          
-        ],
-      ),
+      
       actions: [
 
          _buildNavButton(

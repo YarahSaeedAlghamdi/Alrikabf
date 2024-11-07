@@ -75,12 +75,8 @@ class _HomePageState extends State<HomePage> {
                              
                                GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const CameraFeedPage(),
-                                    ),
-                                  );
+                                  Navigator.pushReplacementNamed(context, '/camera_page');
+                                 
                                 },
                                 child: ConstrainedBox(
                                   constraints: const BoxConstraints(maxWidth: 300,maxHeight: 300,minWidth: 200,minHeight: 200),

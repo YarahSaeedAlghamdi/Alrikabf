@@ -1,3 +1,4 @@
+import 'package:alrikabf/Pages/CameraFeed_Page.dart';
 import 'package:alrikabf/Pages/Login_page.dart';
 import 'package:alrikabf/Pages/help_page.dart';
 import 'package:alrikabf/Pages/history_page.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         '/help_page': (context) => HelpPage(),
         '/check_page': (context) => MainPage(),
         '/history_page': (context) => HistoryPage(),
+        '/camera_page': (context) => CameraFeedPage()
       },
     );
   }
